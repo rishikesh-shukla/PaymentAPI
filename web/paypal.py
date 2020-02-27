@@ -11,8 +11,8 @@ class Paypal(object):
         
     paypalrestsdk.configure({
       "mode": "sandbox", # sandbox or live
-      "client_id": "AVEFNPNY_6BX6KFKXdaNL6fXPoU_PBkEq4KN_TQnTRkVkBgcOYEqjHKMJYOmgy9dPGq_9Rvu6XGmEkp_",
-      "client_secret": "EDy-Uv1gsdy91EfJIP-rKELABm-9D9NUUYUSshb5z8HkEqMc2TAirB94l2A1262Rx1obsz1VL_awRPtD" })
+      "client_id": "",
+      "client_secret": "" })
     @app.route('/')
     def index():
         return render_template('index.html')
