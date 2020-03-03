@@ -3,6 +3,7 @@ from flask_restful import Api, Resource
 from pymongo import MongoClient
 import bcrypt
 from paypal import Paypal
+import pyjwt
 app = Flask(__name__)
 api = Api(app)
 
@@ -226,7 +227,9 @@ class Pay(Resource):
             return jsonify(retJson)
 
         cash = cashWithUser(username)
-        print(Paypal.payment())
+        if cash >= money:
+            print(Paypal.payment())
+            
         if cash < money:
             return jsonify(generateReturnDictionary(303, "Not Enough Cash in your account"))
 
@@ -236,13 +239,13 @@ class Pay(Resource):
 
         return jsonify(generateReturnDictionary(200, "Amount Paid"))
 
-
 api.add_resource(Register, '/register')
 api.add_resource(Add, '/add')
 api.add_resource(Transfer, '/transfer')
 api.add_resource(Balance, '/balance')
 api.add_resource(Take, '/take')
 api.add_resource(Pay, '/pay')
+api.add_resource(Payment,'/PS')
 
 
 if __name__=="__main__":
